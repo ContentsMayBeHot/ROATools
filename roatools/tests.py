@@ -1,6 +1,8 @@
 import unittest
 import sys
 
+import roaparse
+
 
 class TestROAParse(unittest.TestCase):
     # TODO: Create tests for ROAParse
