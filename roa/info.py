@@ -1,6 +1,6 @@
 class TestClass:
-    def __init__(self):
-        print('Hello World')
+    def test(self):
+        return "Hello"
 
 def main():
     print("Do Something")
