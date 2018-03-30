@@ -19,3 +19,7 @@ def test_import_roaparse():
     x = roa.StageType()
     x = roa.Stage()
     x = roa.Replay()
+    x = roa.MetaData()
+    x = roa.RuleData()
+    x = roa.Player()
+    x = roa.Action()
