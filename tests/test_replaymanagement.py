@@ -1,5 +1,5 @@
 from test_common import roa
-from roa import Replay, ReplayFolder, ReplayManager, ROADatastore
+from roa import ReplayFile, ReplayFolder, ReplayManager, ROADatastore
 
 import pytest
 import os
@@ -14,11 +14,11 @@ def samples_path():
 @pytest.fixture
 def samples_01_02_01():
     return [
-        '2017-10-21-214825120337.roa', '2017-10-21-215302397203.roa', 
-        '2017-10-21-215752688136.roa', '2017-10-21-215929784285.roa', 
-        '2017-10-21-220031846478.roa', '2017-10-21-220201936686.roa', 
-        '2017-10-21-220325020940.roa', '2017-10-21-220442097729.roa', 
-        '2017-10-21-220540155252.roa', '2017-10-21-220710245259.roa', 
+        '2017-10-21-214825120337.roa', '2017-10-21-215302397203.roa',
+        '2017-10-21-215752688136.roa', '2017-10-21-215929784285.roa',
+        '2017-10-21-220031846478.roa', '2017-10-21-220201936686.roa',
+        '2017-10-21-220325020940.roa', '2017-10-21-220442097729.roa',
+        '2017-10-21-220540155252.roa', '2017-10-21-220710245259.roa',
         '2017-10-21-220912367715.roa']
 
 @pytest.fixture
@@ -27,7 +27,7 @@ def replay_path(samples_path):
 
 @pytest.fixture
 def replay(replay_path):
-    return Replay(replay_path)
+    return ReplayFile(replay_path)
 
 @pytest.fixture
 def replay_folder(samples_path):
@@ -41,13 +41,13 @@ def replay_manager(samples_path):
 def datastore(samples_path):
     return ROADatastore(samples_path)
 
-class TestReplay:
+class TestReplayFile:
     def test_init(self, replay_path):
-        Replay(replay_path)
+        ReplayFile(replay_path)
 
     def test_init_exception(self):
         with pytest.raises(FileNotFoundError):
-            Replay('')
+            ReplayFile('')
 
     def test_attributes(self, replay, replay_path):
         assert replay.path == replay_path
@@ -60,7 +60,7 @@ class TestReplay:
 
     def test_get_version_pretty(self, replay):
         assert replay.get_version(pretty=True) == '1.2.1'
-    
+
 class TestReplayFolder():
     def test_init(self, samples_path):
         ReplayFolder(samples_path)
@@ -86,7 +86,7 @@ class TestReplayManager():
     def test_init_exception(self):
         with pytest.raises(FileNotFoundError):
             ReplayManager('', '01_02_01')
-    
+
     def test_get_all_unvisited(self, replay_manager, samples_01_02_01):
         assert len(samples_01_02_01) == 11
         for replay in replay_manager.get_all_unvisited():
@@ -97,7 +97,7 @@ class TestReplayManager():
 class TestROADatastore:
     def test_init(self, samples_path):
         ROADatastore(samples_path)
-    
+
     def test_init_exception(self):
         with pytest.raises(FileNotFoundError):
             ROADatastore('')

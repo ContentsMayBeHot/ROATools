@@ -1,2 +1,3 @@
 from .info import TestClass
-from .replaymanagement import Replay, ReplayFolder, ReplayManager, ROADatastore
+from .replaymanagement import *
+from .roaparse import *

@@ -1,0 +1,21 @@
+[
+  "tests/test_common.py::test_module_exists",
+  "tests/test_common.py::test_import",
+  "tests/test_common.py::test_import_roaparse",
+  "tests/test_replaymanagement.py::TestReplayFile::()::test_init",
+  "tests/test_replaymanagement.py::TestReplayFile::()::test_init_exception",
+  "tests/test_replaymanagement.py::TestReplayFile::()::test_attributes",
+  "tests/test_replaymanagement.py::TestReplayFile::()::test_get_version",
+  "tests/test_replaymanagement.py::TestReplayFile::()::test_get_version_pretty",
+  "tests/test_replaymanagement.py::TestReplayFolder::()::test_init",
+  "tests/test_replaymanagement.py::TestReplayFolder::()::test_init_exception",
+  "tests/test_replaymanagement.py::TestReplayFolder::()::test_get_available_versions",
+  "tests/test_replaymanagement.py::TestReplayFolder::()::test_get_replays_by_version",
+  "tests/test_replaymanagement.py::TestReplayFolder::()::test_get_replays_by_nonexistent_version",
+  "tests/test_replaymanagement.py::TestReplayManager::()::test_init",
+  "tests/test_replaymanagement.py::TestReplayManager::()::test_init_exception",
+  "tests/test_replaymanagement.py::TestReplayManager::()::test_get_all_unvisited",
+  "tests/test_replaymanagement.py::TestROADatastore::()::test_init",
+  "tests/test_replaymanagement.py::TestROADatastore::()::test_init_exception",
+  "tests/test_replaymanagement.py::TestROADatastore::()::test_attributes"
+]

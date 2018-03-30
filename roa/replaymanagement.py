@@ -1,6 +1,6 @@
 import os
 
-class Replay:
+class ReplayFile:
     '''Interface for a replay file'''
     def __init__(self, path):
         if not os.path.isfile(path):
@@ -32,7 +32,7 @@ class ReplayFolder:
             raise FileNotFoundError
         self.__path = path
         self.__replays = [
-            Replay(os.path.join(self.__path, dirent))
+            ReplayFile(os.path.join(self.__path, dirent))
             for dirent in os.listdir(self.__path) if dirent.endswith('.roa')
         ]
         self.__replays_by_version = {}
@@ -58,10 +58,10 @@ class ReplayManager:
         self.__replay_folder = ReplayFolder(replays_folder_path)
         self.__replays = self.__replay_folder.get_replays_by_version(version)
         self.__datastore = ROADatastore(replays_folder_path)
-    
+
     def get_all_unvisited(self):
         return (
-            replay for replay in self.__replays 
+            replay for replay in self.__replays
             if not self.__datastore.is_captured(replay)
             )
 
