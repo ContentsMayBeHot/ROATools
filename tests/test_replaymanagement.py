@@ -4,12 +4,14 @@ from roatools import ReplayFile, ReplayFolder, ReplayManager, ROADatastore
 import pytest
 import os
 
+
 @pytest.fixture
 def samples_path():
     return os.path.join(
         os.path.dirname(os.path.realpath(__file__)),
         '..',
         'samples')
+
 
 @pytest.fixture
 def samples_01_02_01():
@@ -21,25 +23,31 @@ def samples_01_02_01():
         '2017-10-21-220540155252.roa', '2017-10-21-220710245259.roa',
         '2017-10-21-220912367715.roa']
 
+
 @pytest.fixture
 def replay_path(samples_path):
     return os.path.join(samples_path, '2017-10-21-214825120337.roa')
+
 
 @pytest.fixture
 def replay(replay_path):
     return ReplayFile(replay_path)
 
+
 @pytest.fixture
 def replay_folder(samples_path):
     return ReplayFolder(samples_path)
+
 
 @pytest.fixture
 def replay_manager(samples_path):
     return ReplayManager(samples_path, '01_02_01')
 
+
 @pytest.fixture
 def datastore(samples_path):
     return ROADatastore(samples_path)
+
 
 class TestReplayFile:
     def test_init(self, replay_path):
@@ -61,6 +69,7 @@ class TestReplayFile:
     def test_get_version_pretty(self, replay):
         assert replay.get_version(pretty=True) == '1.2.1'
 
+
 class TestReplayFolder():
     def test_init(self, samples_path):
         ReplayFolder(samples_path)
@@ -77,7 +86,8 @@ class TestReplayFolder():
         assert replay_folder.get_replays_by_version('01_02_01')
 
     def test_get_replays_by_nonexistent_version(self, replay_folder):
-        assert replay_folder.get_replays_by_version('') == None
+        assert replay_folder.get_replays_by_version('') is None
+
 
 class TestReplayManager():
     def test_init(self, samples_path):
@@ -93,6 +103,7 @@ class TestReplayManager():
             assert replay.fname in samples_01_02_01
             samples_01_02_01.remove(replay.fname)
         assert samples_01_02_01 == []
+
 
 class TestROADatastore:
     def test_init(self, samples_path):

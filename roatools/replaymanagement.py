@@ -1,5 +1,6 @@
 import os
 
+
 class ReplayFile:
     '''Interface for a replay file'''
     def __init__(self, path):
@@ -67,6 +68,7 @@ class ReplayManager:
 
     def move_replay_to_replays_folder(self, replay):
         pass
+
 
 class ROADatastore:
     '''Interface for a directory structure containing raw frames and replays'''

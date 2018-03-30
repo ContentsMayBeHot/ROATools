@@ -2,6 +2,7 @@ class TestClass:
     def test(self):
         return "Hello"
 
+
 def main():
     print("Do Something")
 
