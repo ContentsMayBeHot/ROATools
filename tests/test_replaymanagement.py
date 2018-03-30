@@ -1,5 +1,5 @@
-from test_common import roa
-from roa import ReplayFile, ReplayFolder, ReplayManager, ROADatastore
+from test_common import roatools
+from roatools import ReplayFile, ReplayFolder, ReplayManager, ROADatastore
 
 import pytest
 import os

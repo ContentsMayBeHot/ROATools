@@ -1,4 +1,8 @@
 {
   "tests/test_common.py::test_import_roaparse": true,
-  "tests/test_replaymanagement.py::TestReplay::()::test_init_exception": true
+  "tests/test_replaymanagement.py::TestROADatastore::()": true,
+  "tests/test_replaymanagement.py::TestReplay::()::test_init_exception": true,
+  "tests/test_replaymanagement.py::TestReplayFile::()": true,
+  "tests/test_replaymanagement.py::TestReplayFolder::()": true,
+  "tests/test_replaymanagement.py::TestReplayManager::()": true
 }

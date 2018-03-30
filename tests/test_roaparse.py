@@ -1,5 +1,5 @@
-from roa import ActionType, SimpleAction, StageType, Stage, StageType
-from roa import Character, Replay, MetaData, RuleData, Player, Action
+from roatools import ActionType, SimpleAction, StageType, Stage, StageType
+from roatools import Character, Replay, MetaData, RuleData, Player, Action
 
 import pytest
 
