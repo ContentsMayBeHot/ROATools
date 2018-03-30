@@ -1,7 +1,6 @@
 [
   "tests/test_common.py::test_module_exists",
   "tests/test_common.py::test_import",
-  "tests/test_common.py::test_import_roaparse",
   "tests/test_replaymanagement.py::TestReplayFile::()::test_init",
   "tests/test_replaymanagement.py::TestReplayFile::()::test_init_exception",
   "tests/test_replaymanagement.py::TestReplayFile::()::test_attributes",
@@ -17,5 +16,21 @@
   "tests/test_replaymanagement.py::TestReplayManager::()::test_get_all_unvisited",
   "tests/test_replaymanagement.py::TestROADatastore::()::test_init",
   "tests/test_replaymanagement.py::TestROADatastore::()::test_init_exception",
-  "tests/test_replaymanagement.py::TestROADatastore::()::test_attributes"
+  "tests/test_replaymanagement.py::TestROADatastore::()::test_attributes",
+  "tests/test_roaparse.py::TestActionEnums::()::test_comp_init",
+  "tests/test_roaparse.py::TestActionEnums::()::test_simp_init",
+  "tests/test_roaparse.py::TestActionEnums::()::test_get_action",
+  "tests/test_roaparse.py::TestActionEnums::()::test_get_action_OOB",
+  "tests/test_roaparse.py::TestActionEnums::()::test_cast_action",
+  "tests/test_roaparse.py::TestStageEnums::()::test_stage_init",
+  "tests/test_roaparse.py::TestStageEnums::()::test_type_init",
+  "tests/test_roaparse.py::TestStageEnums::()::test_get_stage",
+  "tests/test_roaparse.py::TestStageEnums::()::test_get_stage_OOB",
+  "tests/test_roaparse.py::TestStageEnums::()::test_get_stage_type",
+  "tests/test_roaparse.py::TestStageEnums::()::test_get_stage_type_OOB",
+  "tests/test_roaparse.py::TestCharacterEnum::()::test_char_init",
+  "tests/test_roaparse.py::TestCharacterEnum::()::test_get_character",
+  "tests/test_roaparse.py::TestCharacterEnum::()::test_get_character_OOB",
+  "tests/test_roaparse.py::TestReplayBase::()::test_replay_init",
+  "tests/test_roaparse.py::TestReplayBase::()::test_replay_name"
 ]

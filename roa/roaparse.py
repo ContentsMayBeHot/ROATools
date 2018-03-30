@@ -1,4 +1,5 @@
 import enum
+import os
 
 
 class ActionType(enum.Enum):
@@ -61,7 +62,7 @@ class ActionType(enum.Enum):
     ANG_TOGGLE_RELEASE = 39
 
     @staticmethod
-    def get_ActionType(ActionType_character):
+    def get_action(action_character):
         return{
             'L': ActionType.LEFT_PRESS,
             'l': ActionType.LEFT_RELEASE,
@@ -103,7 +104,7 @@ class ActionType(enum.Enum):
             315: ActionType.ANG_DOWN_RIGHT,
             'Z': ActionType.ANG_TOGGLE_PRESS,
             'z': ActionType.ANG_TOGGLE_RELEASE
-        }.get(ActionType_character, ActionType.INVALID)
+        }.get(action_character, ActionType.INVALID)
 
 
 class SimpleAction(enum.Enum):
@@ -188,11 +189,26 @@ class SimpleAction(enum.Enum):
             ActionType.ANG_TOGGLE_RELEASE: SimpleAction.ANG_TOGGLE
         }.get(action, SimpleAction.INVALID)
 
+    @staticmethod
+    def generate_matrix(action):
+        base = numpy.zeros(26)
+        if action is not SimpleAction.INVALID:
+            base[action] = 1
+        return base
+
 
 class StageType(enum.Enum):
     INVALID = -1
     BASIC = 0
     AETHER = 1
+
+    @staticmethod
+    def get_stage_type(type_str):
+        conv = int(type_str)
+        if conv >= 0 and conv < 2:
+            return StageType(conv)
+
+        return StageType.INVALID
 
 
 class Stage(enum.Enum):
@@ -217,10 +233,19 @@ class Stage(enum.Enum):
     NEO_FIRE_CAPITAL = 17
     SWAMPY_ESTUARY = 18
 
+    @staticmethod
+    def get_stage(stage_str):
+        conv = int(stage_str)
+        if conv >= 0 and conv < 19:
+            return Stage(conv)
+
+        return Stage.INVALID
+
 
 class Character(enum.Enum):
+    INVALID = -1
     NONE = 0
-    INVALID = 1
+    ERROR = 1
     ZETTERBURN = 2
     ORCANE = 3
     WRASTOR = 4
@@ -232,3 +257,64 @@ class Character(enum.Enum):
     ORI = 10
     RANNO = 11
     CLAIREN = 12
+
+    @staticmethod
+    def get_character(char_str):
+        conv = int(char_str)
+        if conv >= 0 and conv < 13:
+            return Character(conv)
+
+        return Character.INVALID
+
+
+class Replay:
+    def __init__(self, roa_apath):
+
+        if not roa_apath.endswith('.roa'):
+            return
+
+        self.f_name = os.path.basename(roa_apath)[:-4]
+
+
+class MetaData:
+    def __init__(self, meta_line):
+        self.is_starred = bool(int(meta_line[0]))
+        self.version = meta_line[1:8]
+        self.date_time = meta_line[8:21]
+
+    def format_meta_str(self):
+        return str(self.is_starred) + "\t" + \
+            self.version + "\t" + \
+            self.date_time + "\n"
+
+
+class RuleData:
+    def __init__(self, rule_line):
+        self.stage_type = StageType.get_stage_type(rule_line[0])
+        self.stage_id = Stage.get_stage(rule_line[1:3])
+        self.stock_count = rule_line[3:5]
+        self.time = rule_line[5:7]
+        self.team = bool(int(rule_line[7]))
+        self.friendly_fire = bool(int(rule_line[8]))
+
+    def format_rule_str(self):
+        return str(self.stage_type) + "\t" + \
+            str(self.stage_id) + "\t" + \
+            str(self.stock_count) + "\t" + \
+            str(self.time) + "\t" + \
+            str(self.team) + "\t" + \
+            str(self.friendly_fire) + "\n"
+
+
+class Player:
+    def __init__(self, ln_info, ln_actions):
+        self.name = ln_info[1:33].rstrip()
+        self.character = Character.get_character(ln_info[39:41])
+
+
+class Action:
+    def __init__(self, frame_index, action_str):
+        self.fame_index = int(frame_index)
+        self.action = ActionType.get_action(action_str)
+        self.simple_action = SimpleAction.cast_action(self.action)
+        self.matrix = SimpleAction.generate_matrix(self.simple_action)

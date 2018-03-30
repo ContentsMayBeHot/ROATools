@@ -11,15 +11,3 @@ def test_module_exists():
 def test_import():
     x = roa.TestClass()
     assert x.test() == 'Hello'
-
-
-def test_import_roaparse():
-    x = roa.ActionType()
-    x = roa.SimpleAction()
-    x = roa.StageType()
-    x = roa.Stage()
-    x = roa.Replay()
-    x = roa.MetaData()
-    x = roa.RuleData()
-    x = roa.Player()
-    x = roa.Action()
