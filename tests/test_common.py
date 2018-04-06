@@ -1,7 +1,8 @@
-import os, sys
+import os
+import sys
 parent_rpath = os.path.join(os.path.dirname(__file__), '..')
 sys.path.insert(0, os.path.abspath(parent_rpath))
-import roatools
+import roatools  # noqa
 
 
 def test_module_exists():
